@@ -9,7 +9,7 @@ function wordsWidget() {
                 alert('Please enter a sentence.');
                 return;
             }
-            fetch(`/api/word_game?sentence=${encodeURIComponent(this.sentence)}`)
+            fetch(`https://bootcamp-apis-0msn.onrender.com/api/word_game?sentence=${encodeURIComponent(this.sentence)}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
@@ -34,7 +34,7 @@ function phoneBillWidget() {
             this.getPrices();
         },
         getPrices() {
-            fetch('/api/phonebill/prices')
+            fetch('https://bootcamp-apis-0msn.onrender.com/api/phonebill/prices')
                 .then(response => response.json())
                 .then(data => {
                     this.prices = data;
@@ -46,7 +46,7 @@ function phoneBillWidget() {
                 alert('Please enter usage.');
                 return;
             }
-            fetch('/api/phonebill/total', {
+            fetch('https://bootcamp-apis-0msn.onrender.com/api/phonebill/total', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ bill: this.billInput })
@@ -64,14 +64,14 @@ function phoneBillWidget() {
         updatePrices() {
             const updates = [];
             if (this.newCallPrice) {
-                updates.push(fetch('/api/phonebill/price', {
+                updates.push(fetch('https://bootcamp-apis-0msn.onrender.com/api/phonebill/price', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ type: 'call', price: parseFloat(this.newCallPrice) })
                 }));
             }
             if (this.newSmsPrice) {
-                updates.push(fetch('/api/phonebill/price', {
+                updates.push(fetch('https://bootcamp-apis-0msn.onrender.com/api/phonebill/price', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ type: 'sms', price: parseFloat(this.newSmsPrice) })
@@ -99,7 +99,7 @@ function enoughAirtimeWidget() {
                 alert('Please enter usage and available airtime.');
                 return;
             }
-            fetch('/api/enough', {
+            fetch('https://bootcamp-apis-0msn.onrender.com/api/enough', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ usage: this.usage, available: parseFloat(this.available) })
